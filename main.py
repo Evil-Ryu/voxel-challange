@@ -20,7 +20,7 @@ def dbar(p, a, b, r):
 
 @ti.func
 def tree(z):
-    scale = 1.; col = 0.
+    col = 0.
     d = ti.max(ti.abs(z.y + 1.) - 1., distance(z.xz, vec2(0)) - .13)
     for i in range(0, 8):
         scale = (i + 2) * 2.
@@ -32,11 +32,6 @@ def tree(z):
         z.yz += vec2(-2, 1.)
         z *= 2.; scale *= 2.
     return (d, col)
-
-@ti.func
-def cyl(p, h):
-    d = vec2(ti.abs(distance(p.xz, vec2(0))), ti.abs(p.y)) - h
-    return ti.min(ti.max(d.x, d.y), 0.) + distance(vec2(ti.max(d.x, 0), ti.max(d.y, 0)), vec2(0))
 
 @ti.func
 def fold(p, a):
